@@ -46,20 +46,21 @@ class App extends Component {
     )
   }
   componentDidMount() {
-    let client_id: string = 'c9d669bd262842b7a7ccd54a046eceb3';
-    let redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
+    let client_id: string = '287daee6bafd4ce48e000a00a40d3f6f';
+    let redirect_uri = 'http://82a9546ad55f.ngrok.io';
+    // let redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
     let state: string = generateRandomString(16);
     localStorage.setItem('spotify_auth_state', state);
-    let auth_url: string = 'https://accounts.spotify.com/authorize?client_id=c9d669bd262842b7a7ccd54a046eceb3&redirect';
-    auth_url += '?response_type=token' + '&client_id=' + encodeURIComponent(client_id) + '&scope=' + encodeURIComponent(redirect_uri)
+    let auth_url: string = 'https://accounts.spotify.com/authorize';
+    auth_url += '?response_type=token&client_id=' + encodeURIComponent(client_id) + '&redirect_uri=' + encodeURIComponent(redirect_uri)
       + '&state=' + encodeURIComponent(state);
 
-
-    fetch(auth_url)
-      .then(res => res.json())
-      .then((result) => {
-        console.log(result);
-      });
+    window.location.href = auth_url;
+    // fetch(auth_url)
+    //   .then(res => res.json())
+    //   .then((result) => {
+    //     console.log(result);
+    //   });
   }
 }
 
