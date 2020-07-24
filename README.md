@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Check out my app [here](http://kevinshi97.github.io/spotify-web)<br />
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br />
+Deployment on Github pages was done following [this wonderful guide](https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f).<br />
 
 ## Available Scripts
 
@@ -17,9 +19,9 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `npm run deploy`
 
-Builds the app for production to the `build` folder.<br />
+Builds the app for production to the `build` folder and then deploy to github pages.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br />
