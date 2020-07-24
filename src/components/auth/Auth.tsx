@@ -9,8 +9,8 @@ class App extends Component {
   }
   componentDidMount() {
     let client_id: string = '287daee6bafd4ce48e000a00a40d3f6f';
-    // let redirect_uri = 'http://3ee1c651ba0b.ngrok.io/web';
-    let redirect_uri: string = 'http://kevinshi97.github.io/spotify-web/web';
+    let redirect_uri = 'http://3ee1c651ba0b.ngrok.io/web';
+    // let redirect_uri: string = 'http://kevinshi97.github.io/spotify-web/web';
     let state: string = generateRandomString(16);
     localStorage.setItem('spotify_auth_state', state);
     let auth_url: string = 'https://accounts.spotify.com/authorize';
