@@ -2,6 +2,13 @@ Check out my app [here](http://kevinshi97.github.io/spotify-web)<br />
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br />
 Deployment on Github pages was done following [this wonderful guide](https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f).<br />
 
+Packages + Other Stuff:
+[Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/download/)
+[Bootstrap React](https://react-bootstrap.github.io/getting-started/introduction)
+[fontawesome 5](https://fontawesome.com/v4.7.0/icons/)
+[react fontawesome](https://github.com/FortAwesome/react-fontawesome)
+
+
 ## Available Scripts
 
 In the project directory, you can run:

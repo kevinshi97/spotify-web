@@ -2,6 +2,19 @@ import React, {Component} from 'react';
 import logo from '../../images/logo.svg';
 import './App.css';
 import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+// import * as icons from '@fortawesome/free-solid-svg-icons';
+
+
+let client_id: string = '287daee6bafd4ce48e000a00a40d3f6f';
+// let redirect_uri = 'http://b92a7a937600.ngrok.io';
+let redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
+let state: string = generateRandomString(16);
+localStorage.setItem('spotify_auth_state', state);
+let auth_url: string = 'https://accounts.spotify.com/authorize';
+auth_url += '?response_type=token&client_id=' + encodeURIComponent(client_id) + '&redirect_uri=' + encodeURIComponent(redirect_uri)
+  + '&state=' + encodeURIComponent(state);
 
 class App extends Component {
   render() {
@@ -12,14 +25,18 @@ class App extends Component {
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
-          <a
+          {/* <a
             className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             Learn React
+          </a> */}
+          <a href={auth_url} >
+            Log In to Spotify
           </a>
+          <FontAwesomeIcon icon={faCoffee} />
           <Button variant="primary">Primary</Button>{' '}
         </header>
       </div>
@@ -39,5 +56,15 @@ class App extends Component {
 
   }
 }
+
+function generateRandomString(length: number): string {
+  let text: string = '';
+  var possible: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (let i: number = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
 
 export default App;
