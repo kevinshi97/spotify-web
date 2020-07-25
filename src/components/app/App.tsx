@@ -3,28 +3,55 @@ import logo from '../../images/logo.svg';
 import './App.css';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faSignInAlt, faAdjust } from '@fortawesome/free-solid-svg-icons'
+import { access } from 'fs';
 // import * as icons from '@fortawesome/free-solid-svg-icons';
 
 
 let client_id: string = '287daee6bafd4ce48e000a00a40d3f6f';
-// let redirect_uri = 'http://b92a7a937600.ngrok.io';
-let redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
+let redirect_uri = 'http://96dc3d3968bf.ngrok.io';
+// let redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
 let state: string = generateRandomString(16);
 localStorage.setItem('spotify_auth_state', state);
 let auth_url: string = 'https://accounts.spotify.com/authorize';
 auth_url += '?response_type=token&client_id=' + encodeURIComponent(client_id) + '&redirect_uri=' + encodeURIComponent(redirect_uri)
   + '&state=' + encodeURIComponent(state);
 
-class App extends Component {
+
+  interface IAppProps {
+  }
+  
+interface IAppState {
+    loggedIn?: boolean
+    dark?: boolean;
+  }
+
+
+class App extends Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
+    super(props);
+    this.state = {
+      loggedIn: false,
+      dark: false,
+    };
+  }
+
+  changeTheme = () => {
+    this.setState({ dark: !this.state.dark });
+  }
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header className={`App-header ${ this.state.dark? '' : 'dark'}`}>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
+          <a href={auth_url} style={this.state.loggedIn? {pointerEvents: 'none'} : {pointerEvents: 'auto'}}>
+            {this.state.loggedIn? 'Signed In' : 'Sign In'} <FontAwesomeIcon icon={faSignInAlt} />
+          </a>
           {/* <a
             className="App-link"
             href="https://reactjs.org"
@@ -33,11 +60,8 @@ class App extends Component {
           >
             Learn React
           </a> */}
-          <a href={auth_url} >
-            Log In to Spotify
-          </a>
-          <FontAwesomeIcon icon={faCoffee} />
-          <Button variant="primary">Primary</Button>{' '}
+          {/* <Button variant="primary" onClick={this.changeTheme}><FontAwesomeIcon icon={faAdjust} /></Button>{' '} */}
+          <FontAwesomeIcon icon={faAdjust} onClick={this.changeTheme}/>
         </header>
       </div>
     )
@@ -53,7 +77,7 @@ class App extends Component {
     console.log('token_type: ', token_type);
     console.log('expires_in: ', expires_in);
     console.log('returned_state: ', returned_state);
-
+    this.setState({ loggedIn: access_token? true : false });
   }
 }
 
