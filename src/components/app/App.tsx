@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import logo from '../../images/logo.svg';
 import './App.css';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faAdjust, faBatteryQuarter } from '@fortawesome/free-solid-svg-icons'
-import { access } from 'fs';
+import { faAdjust } from '@fortawesome/free-solid-svg-icons'
+// import { access } from 'fs';
 // import * as icons from '@fortawesome/free-solid-svg-icons';
-import {IAppProps, IAppState} from '../library/interfaces/app-interfaces'
+import {IAppProps, IAppState} from '../library/interfaces/IApp'
 import { SpotifyAdapter } from '../library/spotify-adapter';
 import { TimeRange } from '../library/enums/enums';
+import { Graph } from '../Graph/Graph';
 
 class App extends Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
@@ -18,13 +19,16 @@ class App extends Component<IAppProps, IAppState> {
       dark: false,
       query_top_limit: 50,
       query_top_offset: 0,
-      query_top_timerange: TimeRange.medium_term
+      query_top_timerange: TimeRange.short_term,
+      // tracks: [],
+      // curr_track: null,
+      // curr_audio_features: null
     };
   }
 
   changeTheme = () => {
     this.setState({ dark: !this.state.dark });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
 
@@ -48,7 +52,8 @@ class App extends Component<IAppProps, IAppState> {
             Learn React
           </a> */}
           {/* <Button variant="primary" onClick={this.changeTheme}><FontAwesomeIcon icon={faAdjust} /></Button>{' '} */}
-          <FontAwesomeIcon icon={faAdjust} onClick={this.changeTheme}/>
+          <Graph audio_features={this.state.curr_audio_features} track={this.state.curr_track}/>
+          <FontAwesomeIcon id="dar-mode-btn" icon={faAdjust} onClick={this.changeTheme} />
         </header>
       </div>
     )
@@ -63,12 +68,17 @@ class App extends Component<IAppProps, IAppState> {
       // console.log('expires_in: ', adapter.expires_in);
       // console.log('returned_state: ', adapter.returned_state);
       // console.log('local_state: ', adapter.stored_state);
-      adapter.getTopArtists(this.state.query_top_limit, this.state.query_top_offset, this.state.query_top_timerange);
       adapter.getTopTracks(this.state.query_top_limit, this.state.query_top_offset, this.state.query_top_timerange);
 
     } else {
       console.log('not logged in');
       adapter.logIn();
+    }
+  }
+  componentDidUpdate(prevProps: IAppProps, prevState: IAppState) {
+    const adapter: SpotifyAdapter = new SpotifyAdapter(this);
+    if (this.state.tracks && this.state.curr_track !== prevState.curr_track) {
+      adapter.getAudioFeature(this.state.curr_track!);
     }
   }
 }

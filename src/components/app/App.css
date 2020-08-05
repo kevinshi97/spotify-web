@@ -28,10 +28,17 @@
 .dark {
   background-color: #282c34;
   color: white;
+  fill: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+#dar-mode-btn {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
 }
 
 @keyframes App-logo-spin {

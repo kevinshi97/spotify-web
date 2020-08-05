@@ -1,8 +1,10 @@
 import {Component} from 'react';
 
 import { Passport } from './authenticator';
-import { IAppProps, IAppState } from './interfaces/app-interfaces';
+import { IAppProps, IAppState } from './interfaces/IApp';
 import { TimeRange } from './enums/enums';
+import { Artist } from './interfaces/IArtist';
+import { Track, AudioFeatures } from './interfaces/ISpotifyObjects';
 
 export class SpotifyAdapter {
   public access_token: string | null = null;
@@ -27,32 +29,42 @@ export class SpotifyAdapter {
     Passport.logIn();
   }
 
-  public getTopArtists(limit: number = 20, offset: number = 0, time_range: TimeRange = TimeRange.medium_term): void {
-    this.SpotifyTopRequest('https://api.spotify.com/v1/me/top/artists?', limit, offset, time_range);
-  }
-
   public getTopTracks(limit: number = 20, offset: number = 0, time_range: TimeRange = TimeRange.medium_term): void {
-    this.SpotifyTopRequest('https://api.spotify.com/v1/me/top/tracks?', limit, offset, time_range);    
-  }
-
-  private SpotifyTopRequest(url: string, limit: number = 20, offset: number = 0, time_range: TimeRange): void {
     if (limit < 1 || limit > 50 || offset < 0 || offset > limit) {
       console.log('invalid params');
     } else {
-      let new_url = url + '&limit=' + encodeURIComponent(limit) + '&offset=' + encodeURIComponent(offset) + '&time_range='
+      const url = 'https://api.spotify.com/v1/me/top/tracks?&limit=' + encodeURIComponent(limit) + '&offset=' + encodeURIComponent(offset) + '&time_range='
         + encodeURIComponent(time_range);
-      let params: RequestInit = {
+      const params: RequestInit = {
         headers: {'Authorization': 'Bearer ' + this.access_token} as HeadersInit, 
         method: 'GET',
-      };
-      fetch(new_url, params)
+      }
+      fetch(url, params)
         .then(res => res.json())
         .then((data) => {
-          this.app.setState({ data: data });
-          console.log(data);
-          console.log(this.app.state); 
+          const tracks = data.items as Track[]
+          this.app.setState({ tracks: tracks, curr_track: tracks[0] || null})
+          console.log(this.app.state.tracks);
+          console.log(this.app.state.curr_track);
       })
     }
   }
 
+  public getAudioFeature(curr_track: Track): void {
+    const id: string = curr_track.uri.split(':').pop() || '';
+    console.log(id);
+    const url = 'https://api.spotify.com/v1/audio-features/'+encodeURI(id);
+    const params: RequestInit = {
+      headers: {'Authorization': 'Bearer ' + this.access_token} as HeadersInit, 
+      method: 'GET',
+    }
+    fetch(url, params)
+      .then(res => res.json())
+      .then((data) => {
+        const audio_features = data as AudioFeatures
+        console.log(audio_features);
+        this.app.setState({ curr_audio_features: audio_features });
+        // console.log(this.app.state.curr_audio_features);
+    })
+  }
 }

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  font-size: 8pt;
+}
+
+.graph-container {
+  width: 20rem;
+  height: 20rem;
+}
+
+.song-container {
+  display: flex;
+  flex-direction: column;
+  font-size: auto;
+}
+
+.album-logo {
+  width: 5rem;
+  height: 5rem;
+}
+

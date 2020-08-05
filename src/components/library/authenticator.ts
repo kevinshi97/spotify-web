@@ -4,7 +4,7 @@ class Authenticator {
    */
   private static _instance: Authenticator;
   private client_id: string = '287daee6bafd4ce48e000a00a40d3f6f';
-  // private redirect_uri: string = 'http://52ebb59eaef3.ngrok.io';
+  // private redirect_uri: string = 'http://dae5fd7d1cb9.ngrok.io';
   private redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
   private scopes: string = 'user-top-read user-follow-read user-library-read';
   private state: string = this.generateRandomString(16);
@@ -35,7 +35,7 @@ class Authenticator {
   }
 
   public get isLoggedIn(): Boolean {
-    return (this.access_token && this.stored_state == this.returned_state) || false;
+    return (this.access_token && this.stored_state === this.returned_state) || false;
   }
 
   public logIn(): void {

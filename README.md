@@ -9,7 +9,7 @@ Packages + Other Documentation:
 [react fontawesome](https://github.com/FortAwesome/react-fontawesome)
 [spotify developer api reference](https://developer.spotify.com/documentation/web-api/reference/personalization/get-users-top-artists-and-tracks/)
 [spotify developer authentication reference](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow)
-
+[rechart](https://recharts.org/en-US/api)
 
 
 ## Available Scripts
