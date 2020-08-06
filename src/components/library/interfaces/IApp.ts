@@ -25,15 +25,22 @@ export interface IAppState {
  */
 
 
-export interface IGraphProps {
+export interface IChartAreaProps {
   audio_features?: AudioFeatures
   track?: Track
 }
-export interface IGraphState {
+export interface IChartAreaState {
   audio_features?: AudioFeatures
   track?: Track
   data?: object[]
   image?: string
   name?: string
   url?: string
+}
+
+export interface IGraphAreaProps { }
+export interface IGraphAreaState {
+  graph: any
+  options: any
+  events: any
 }

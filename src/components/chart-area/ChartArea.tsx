@@ -1,11 +1,11 @@
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer, Text} from 'recharts';
 import React, {Component} from 'react';
-import { IGraphProps, IGraphState } from '../library/interfaces/IApp';
+import { IChartAreaProps, IChartAreaState } from '../library/interfaces/IApp';
 
-import './Graph.css';
+import './ChartArea.css';
 
-export class Graph extends Component<IGraphProps, IGraphState> {
-  constructor(props: IGraphProps) {
+export class ChartArea extends Component<IChartAreaProps, IChartAreaState> {
+  constructor(props: IChartAreaProps) {
     super(props);
     this.state = {
       audio_features: this.props.audio_features,
@@ -15,7 +15,7 @@ export class Graph extends Component<IGraphProps, IGraphState> {
   render() {
     return (
       <div className="container">
-        <div className="graph-container">
+        <div className="chart-container">
           <ResponsiveContainer>
             <RadarChart data={this.state.data}>
               <PolarGrid />
@@ -38,7 +38,7 @@ export class Graph extends Component<IGraphProps, IGraphState> {
 
   componentDidMount() {}
 
-  componentDidUpdate(prevProps: IGraphProps, prevState: IGraphState) {
+  componentDidUpdate(prevProps: IChartAreaProps, prevState: IChartAreaState) {
     if (this.props.track && this.props.track !== prevProps.track) {
       if (this.props.track.external_urls && this.props.track.name) {
         this.setState({ name: this.props.track.name, url: this.props.track.external_urls.spotify || '#' });
@@ -48,13 +48,13 @@ export class Graph extends Component<IGraphProps, IGraphState> {
       }
     }
     if (this.props.audio_features && this.props.audio_features !== prevProps.audio_features) {
-      this.updateGraph()
+      this.updateChartArea()
     }
   }
 
-  public updateGraph() {
-    const major: number = this.props.audio_features?.mode || 0
-    const bpm: number = this.props.audio_features?.tempo || 0
+  public updateChartArea() {
+    // const major: number = this.props.audio_features?.mode || 0
+    // const bpm: number = this.props.audio_features?.tempo || 0
     const tempo = this.props.audio_features?.tempo || 0
     // const nchords: number = 3 //idk how to get the chords, this was a wash :/
     // const nchords: number = this.props.audio_features?.key || 0

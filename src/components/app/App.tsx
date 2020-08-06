@@ -9,7 +9,8 @@ import { faAdjust } from '@fortawesome/free-solid-svg-icons'
 import {IAppProps, IAppState} from '../library/interfaces/IApp'
 import { SpotifyAdapter } from '../library/spotify-adapter';
 import { TimeRange } from '../library/enums/enums';
-import { Graph } from '../Graph/Graph';
+import { ChartArea } from '../chart-area/ChartArea';
+import { GraphArea } from '../graph-area/GraphArea';
 
 class App extends Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
@@ -52,7 +53,8 @@ class App extends Component<IAppProps, IAppState> {
             Learn React
           </a> */}
           {/* <Button variant="primary" onClick={this.changeTheme}><FontAwesomeIcon icon={faAdjust} /></Button>{' '} */}
-          <Graph audio_features={this.state.curr_audio_features} track={this.state.curr_track}/>
+          <GraphArea />
+          <ChartArea audio_features={this.state.curr_audio_features} track={this.state.curr_track}/>
           <FontAwesomeIcon id="dar-mode-btn" icon={faAdjust} onClick={this.changeTheme} />
         </header>
       </div>
