@@ -1,5 +1,6 @@
-.container {
+.info-container {
   display: flex;
+  flex-direction: column;
   font-size: 8pt;
 }
 
@@ -10,7 +11,7 @@
 
 .song-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font-size: auto;
 }
 
@@ -19,3 +20,8 @@
   height: 5rem;
 }
 
+.title {
+  width: auto;
+  margin: auto;
+  font-size: 2vmin;
+}

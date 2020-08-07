@@ -4,8 +4,8 @@ class Authenticator {
    */
   private static _instance: Authenticator;
   private client_id: string = '287daee6bafd4ce48e000a00a40d3f6f';
-  // private redirect_uri: string = 'http://39e31bb933c1.ngrok.io';
-  private redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
+  private redirect_uri: string = 'http://762f1904a2e3.ngrok.io';
+  // private redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
   private scopes: string = 'user-top-read user-follow-read user-library-read';
   private state: string = this.generateRandomString(16);
   private auth_url: string = 'https://accounts.spotify.com/authorize?response_type=token&client_id=' + encodeURIComponent(this.client_id)

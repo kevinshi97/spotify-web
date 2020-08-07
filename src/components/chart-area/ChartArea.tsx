@@ -14,7 +14,11 @@ export class ChartArea extends Component<IChartAreaProps, IChartAreaState> {
   }
   render() {
     return (
-      <div className="container">
+      <div className="info-container">
+        <div className='song-container'>
+          <img src={this.state.image} className="album-logo" alt="logo" />
+          <a className='title' href={this.state.url} target="_blank" rel="noopener noreferrer">{this.state.name}</a>        
+        </div>
         <div className="chart-container">
           <ResponsiveContainer>
             <RadarChart data={this.state.data}>
@@ -27,10 +31,6 @@ export class ChartArea extends Component<IChartAreaProps, IChartAreaState> {
               <Text scaleToFit={true}/>
             </RadarChart>
           </ResponsiveContainer>
-        </div>
-        <div className='song-container'>
-          <img src={this.state.image} className="album-logo" alt="logo" />
-          <a href={this.state.url} target="_blank" rel="noopener noreferrer">{this.state.name}</a>        
         </div>
       </div>
     )
@@ -81,7 +81,7 @@ export class ChartArea extends Component<IChartAreaProps, IChartAreaState> {
     this.setState({ data: data }, () => {
       console.log('here');
       console.log(this.state.data);
-      console.log(data);
+      // console.log(data);
     });
   }
 

@@ -43,11 +43,12 @@ class App extends Component<IAppProps, IAppState> {
     }
     return (
       <div className="App">
-        <header className={`App-header ${ this.state.dark? '' : 'dark'}`}>
-          <img src={logo} className="App-logo" alt="logo" />
+        <div className={`App-main ${this.state.dark ? '' : 'dark'}`}>
+          <FontAwesomeIcon id="dar-mode-btn" icon={faAdjust} onClick={this.changeTheme} />
+          {/* <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
-          </p>
+          </p> */}
           {/* <a href={auth_url} style={this.state.loggedIn? {pointerEvents: 'none'} : {pointerEvents: 'auto'}}>
             {this.state.loggedIn? 'Signed In' : 'Sign In'} <FontAwesomeIcon icon={faSignInAlt} />
           </a> */}
@@ -62,8 +63,7 @@ class App extends Component<IAppProps, IAppState> {
           {/* <Button variant="primary" onClick={this.changeTheme}><FontAwesomeIcon icon={faAdjust} /></Button>{' '} */}
           {/* <GraphArea tracks={this.state.tracks}/> */}
           {appGraphArea }
-          <FontAwesomeIcon id="dar-mode-btn" icon={faAdjust} onClick={this.changeTheme} />
-        </header>
+        </div>
       </div>
     )
   }

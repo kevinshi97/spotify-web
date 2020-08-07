@@ -6,6 +6,7 @@ import { IGraph, INode, IEdge } from '../library/interfaces/IGraph';
 import { ChartArea } from '../chart-area/ChartArea';
 import { Track, AudioFeatures } from '../library/interfaces/ISpotifyObjects';
 import { SpotifyAdapter } from '../library/spotify-adapter';
+import './GraphArea.css';
  
 // import "./styles.css";
 // need to import the vis network css in order to show tooltip
@@ -41,37 +42,40 @@ export class GraphArea extends Component<IGraphAreaProps, IGraphAreaState> {
 
   render() {
     return (
-      <div>
-        <Graph
-          graph={this.state.graph}
-          options={{
-            layout: {
-              improvedLayout: true,
-              hierarchical: false
-            },
-            edges: {
-              color: "#000000"
-            },
-            interaction: {
-              zoomView: true
-            },
-            height: "500px"
-          }}
-          events={{
-            // selectNode: function(event: any) {
-            //   let { nodes, edges } = event;
-            //   console.log(nodes);
-            //   this.
-            // }
-            selectNode: (event: any) => {
-              let { nodes, edges } = event;
-              this._updateCurrTrack(nodes);
-            }
-          }}
-          getNetwork={network => {
-            //  if you want access to vis.js network api you can set the state in a parent component using this property
-          }}
-        />
+      <div className='main-container'>
+        <div className='graph-container'>
+          <Graph
+            graph={this.state.graph}
+            options={{
+              layout: {
+                improvedLayout: true,
+                hierarchical: false
+              },
+              edges: {
+                color: "#000000"
+              },
+              interaction: {
+                zoomView: true
+              },
+              width: "100%",
+              height: "100%"
+            }}
+            events={{
+              // selectNode: function(event: any) {
+              //   let { nodes, edges } = event;
+              //   console.log(nodes);
+              //   this.
+              // }
+              selectNode: (event: any) => {
+                let { nodes, edges } = event;
+                this._updateCurrTrack(nodes);
+              }
+            }}
+            getNetwork={network => {
+              //  if you want access to vis.js network api you can set the state in a parent component using this property
+            }}
+          />
+        </div>
         <ChartArea audio_features={this.state.curr_audio_features} track={this.state.curr_track}/>
       </div>  
     );

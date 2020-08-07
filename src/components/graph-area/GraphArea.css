@@ -1,0 +1,11 @@
+.main-container {
+    display: flex;
+    font-size: 8pt;
+    flex-direction: row;
+    margin: auto;
+}
+  
+.graph-container {
+    height: 60vh;
+    width: 75vw;
+}

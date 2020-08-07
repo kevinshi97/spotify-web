@@ -22,6 +22,7 @@ export class SpotifyAdapter {
     this.returned_state = Passport.returned_state;
     this.stored_state = Passport.stored_state;
   }
+
   public get isLoggedIn(): Boolean {
     return Passport.isLoggedIn;
   }
