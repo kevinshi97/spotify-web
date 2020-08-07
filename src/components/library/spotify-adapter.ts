@@ -1,7 +1,7 @@
 import {Component} from 'react';
 
 import { Passport } from './authenticator';
-import { IAppProps, IAppState } from './interfaces/IApp';
+import { IProps, IState} from './interfaces/IApp';
 import { TimeRange } from './enums/enums';
 import { Artist } from './interfaces/IArtist';
 import { Track, AudioFeatures } from './interfaces/ISpotifyObjects';
@@ -12,9 +12,9 @@ export class SpotifyAdapter {
   public expires_in: string | null = null;
   public returned_state: string | null = null;
   public stored_state: string | null = null;
-  private app: Component<IAppProps, IAppState>;
+  private app: Component<IProps, IState>;
 
-  constructor(app: Component<IAppProps, IAppState>) {
+  constructor(app: Component<IProps, IState>) {
     this.app = app;
     this.access_token = Passport.access_token;
     this.token_type = Passport.token_type;

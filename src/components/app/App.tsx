@@ -9,7 +9,6 @@ import { faAdjust } from '@fortawesome/free-solid-svg-icons'
 import {IAppProps, IAppState} from '../library/interfaces/IApp'
 import { SpotifyAdapter } from '../library/spotify-adapter';
 import { TimeRange } from '../library/enums/enums';
-import { ChartArea } from '../chart-area/ChartArea';
 import { GraphArea } from '../graph-area/GraphArea';
 
 class App extends Component<IAppProps, IAppState> {
@@ -34,6 +33,14 @@ class App extends Component<IAppProps, IAppState> {
 
 
   render() {
+    let appGraphArea
+    if (this.state.tracks && this.state.curr_audio_features) {
+      appGraphArea = <GraphArea tracks={this.state.tracks}
+        curr_track={this.state.curr_track}
+        curr_audio_features={this.state.curr_audio_features} />
+    } else {
+      appGraphArea = <div />
+    }
     return (
       <div className="App">
         <header className={`App-header ${ this.state.dark? '' : 'dark'}`}>
@@ -53,8 +60,8 @@ class App extends Component<IAppProps, IAppState> {
             Learn React
           </a> */}
           {/* <Button variant="primary" onClick={this.changeTheme}><FontAwesomeIcon icon={faAdjust} /></Button>{' '} */}
-          <GraphArea />
-          <ChartArea audio_features={this.state.curr_audio_features} track={this.state.curr_track}/>
+          {/* <GraphArea tracks={this.state.tracks}/> */}
+          {appGraphArea }
           <FontAwesomeIcon id="dar-mode-btn" icon={faAdjust} onClick={this.changeTheme} />
         </header>
       </div>

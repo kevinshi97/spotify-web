@@ -1,16 +1,26 @@
 import { TimeRange } from '../enums/enums';
 import { Track, AudioFeatures } from './ISpotifyObjects';
+import { IGraph } from './IGraph';
 
-export interface IAppProps { }
-export interface IAppState {
+
+export interface IProps { 
+  tracks?: Track[]
+  curr_track?: Track
+  curr_audio_features?: AudioFeatures
+}
+export interface IState {
+  tracks?: Track[]
+  curr_track?: Track
+  curr_audio_features?: AudioFeatures
+}
+
+export interface IAppProps extends IProps{ }
+export interface IAppState extends IState {
   loggedIn: boolean 
   dark: boolean
   query_top_limit: number
   query_top_offset: number
   query_top_timerange: TimeRange
-  tracks?: Track[]
-  curr_track?: Track
-  curr_audio_features?: AudioFeatures
 }
 
 /**
@@ -38,9 +48,9 @@ export interface IChartAreaState {
   url?: string
 }
 
-export interface IGraphAreaProps { }
-export interface IGraphAreaState {
-  graph: any
-  options: any
-  events: any
+export interface IGraphAreaProps extends IProps{ }
+export interface IGraphAreaState extends IState {
+  graph: IGraph
+  // options: any
+  // events: any
 }

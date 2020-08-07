@@ -36,7 +36,19 @@ export class ChartArea extends Component<IChartAreaProps, IChartAreaState> {
     )
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.props.track) {
+      if (this.props.track.external_urls && this.props.track.name) {
+        this.setState({ name: this.props.track.name, url: this.props.track.external_urls.spotify || '#' });
+      }
+      if (this.props.track.album.images) {
+        this.setState({ image: this.props.track.album.images[0].url });
+      }
+    }
+    if (this.props.audio_features) {
+      this.updateChartArea()
+    }
+  }
 
   componentDidUpdate(prevProps: IChartAreaProps, prevState: IChartAreaState) {
     if (this.props.track && this.props.track !== prevProps.track) {
@@ -67,6 +79,7 @@ export class ChartArea extends Component<IChartAreaProps, IChartAreaState> {
       { "feature": "tempo", "A": tempo/250, "fullMark": 1 },
     ];
     this.setState({ data: data }, () => {
+      console.log('here');
       console.log(this.state.data);
       console.log(data);
     });
