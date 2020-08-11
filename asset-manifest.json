@@ -1,26 +1,25 @@
 {
   "files": {
-    "main.css": "/spotify-web/static/css/main.123fa159.chunk.css",
-    "main.js": "/spotify-web/static/js/main.15abdae4.chunk.js",
-    "main.js.map": "/spotify-web/static/js/main.15abdae4.chunk.js.map",
+    "main.css": "/spotify-web/static/css/main.2e2aeccb.chunk.css",
+    "main.js": "/spotify-web/static/js/main.6bd1a774.chunk.js",
+    "main.js.map": "/spotify-web/static/js/main.6bd1a774.chunk.js.map",
     "runtime-main.js": "/spotify-web/static/js/runtime-main.209230a3.js",
     "runtime-main.js.map": "/spotify-web/static/js/runtime-main.209230a3.js.map",
     "static/css/2.829c9cb5.chunk.css": "/spotify-web/static/css/2.829c9cb5.chunk.css",
-    "static/js/2.6c0b0c83.chunk.js": "/spotify-web/static/js/2.6c0b0c83.chunk.js",
-    "static/js/2.6c0b0c83.chunk.js.map": "/spotify-web/static/js/2.6c0b0c83.chunk.js.map",
+    "static/js/2.5139bd22.chunk.js": "/spotify-web/static/js/2.5139bd22.chunk.js",
+    "static/js/2.5139bd22.chunk.js.map": "/spotify-web/static/js/2.5139bd22.chunk.js.map",
     "index.html": "/spotify-web/index.html",
-    "precache-manifest.d79da5cd8084101e725860f0ff7c4dc0.js": "/spotify-web/precache-manifest.d79da5cd8084101e725860f0ff7c4dc0.js",
+    "precache-manifest.5256797a3bd2ff15dc9ab80441df5d9c.js": "/spotify-web/precache-manifest.5256797a3bd2ff15dc9ab80441df5d9c.js",
     "service-worker.js": "/spotify-web/service-worker.js",
     "static/css/2.829c9cb5.chunk.css.map": "/spotify-web/static/css/2.829c9cb5.chunk.css.map",
-    "static/css/main.123fa159.chunk.css.map": "/spotify-web/static/css/main.123fa159.chunk.css.map",
-    "static/js/2.6c0b0c83.chunk.js.LICENSE.txt": "/spotify-web/static/js/2.6c0b0c83.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/spotify-web/static/media/logo.5d5d9eef.svg"
+    "static/css/main.2e2aeccb.chunk.css.map": "/spotify-web/static/css/main.2e2aeccb.chunk.css.map",
+    "static/js/2.5139bd22.chunk.js.LICENSE.txt": "/spotify-web/static/js/2.5139bd22.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.209230a3.js",
     "static/css/2.829c9cb5.chunk.css",
-    "static/js/2.6c0b0c83.chunk.js",
-    "static/css/main.123fa159.chunk.css",
-    "static/js/main.15abdae4.chunk.js"
+    "static/js/2.5139bd22.chunk.js",
+    "static/css/main.2e2aeccb.chunk.css",
+    "static/js/main.6bd1a774.chunk.js"
   ]
 }
