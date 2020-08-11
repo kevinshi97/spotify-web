@@ -2,10 +2,12 @@
     display: flex;
     font-size: 8pt;
     flex-direction: row;
-    margin: auto;
+    margin: 0px;
+    height: 100vh;
+    width: 100vw;
 }
   
 .graph-container {
-    height: 60vh;
+    height: 100vh;
     width: 75vw;
 }

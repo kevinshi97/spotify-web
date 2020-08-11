@@ -2,11 +2,8 @@
   display: flex;
   flex-direction: column;
   font-size: 8pt;
-}
-
-.chart-container {
-  width: 20rem;
-  height: 20rem;
+  /* padding-top: 14vh; */
+  /* padding-bottom: 14vh; */
 }
 
 .song-container {
@@ -16,12 +13,31 @@
 }
 
 .album-logo {
-  width: 5rem;
-  height: 5rem;
+  width: 5vw;
+  height: 5vw;
 }
 
 .title {
   width: auto;
   margin: auto;
-  font-size: 2vmin;
+  font-size: 3vmin;
 }
+
+.chart-container {
+  width: 20vw;
+  height: 30vh;
+}
+
+.player-container {
+  width: 20vw;
+  height: 30vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#player {
+  margin: auto;
+}
+
+

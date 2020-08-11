@@ -16,7 +16,7 @@ class App extends Component<IAppProps, IAppState> {
     super(props);
     this.state = {
       loggedIn: false,
-      dark: false,
+      dark: true,
       query_top_limit: 50,
       query_top_offset: 0,
       query_top_timerange: TimeRange.short_term,
@@ -33,17 +33,19 @@ class App extends Component<IAppProps, IAppState> {
 
 
   render() {
-    let appGraphArea
+    let appGraphArea;
     if (this.state.tracks && this.state.curr_audio_features) {
-      appGraphArea = <GraphArea tracks={this.state.tracks}
+      appGraphArea = <GraphArea
+        dark={this.state.dark}
         curr_track={this.state.curr_track}
-        curr_audio_features={this.state.curr_audio_features} />
+        curr_audio_features={this.state.curr_audio_features}
+        tracks={this.state.tracks}/>
     } else {
       appGraphArea = <div />
     }
     return (
       <div className="App">
-        <div className={`App-main ${this.state.dark ? '' : 'dark'}`}>
+        <div className={`App-main ${this.state.dark ? 'dark' : ''}`}>
           <FontAwesomeIcon id="dar-mode-btn" icon={faAdjust} onClick={this.changeTheme} />
           {/* <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -63,6 +65,11 @@ class App extends Component<IAppProps, IAppState> {
           {/* <Button variant="primary" onClick={this.changeTheme}><FontAwesomeIcon icon={faAdjust} /></Button>{' '} */}
           {/* <GraphArea tracks={this.state.tracks}/> */}
           {appGraphArea }
+          {/* <GraphArea
+            dark={this.state.dark}
+            curr_track={this.state.curr_track}
+            curr_audio_features={this.state.curr_audio_features}
+            tracks={this.state.tracks}/> */}
         </div>
       </div>
     )

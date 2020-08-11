@@ -10,6 +10,7 @@ Packages + Other Documentation:
 [spotify developer api reference](https://developer.spotify.com/documentation/web-api/reference/personalization/get-users-top-artists-and-tracks/)
 [spotify developer authentication reference](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow)
 [rechart](https://recharts.org/en-US/api)
+[vis](https://visjs.org/) [vis-nodes](https://visjs.github.io/vis-network/docs/network/nodes.html)
 
 
 ## Available Scripts

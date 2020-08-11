@@ -1,7 +1,7 @@
 import { TimeRange } from '../enums/enums';
 import { Track, AudioFeatures } from './ISpotifyObjects';
 import { IGraph } from './IGraph';
-
+import { Network, Node, Edge } from 'vis';
 
 export interface IProps { 
   tracks?: Track[]
@@ -36,10 +36,12 @@ export interface IAppState extends IState {
 
 
 export interface IChartAreaProps {
+  dark: boolean,
   audio_features?: AudioFeatures
   track?: Track
 }
 export interface IChartAreaState {
+  dark: boolean,
   audio_features?: AudioFeatures
   track?: Track
   data?: object[]
@@ -48,9 +50,13 @@ export interface IChartAreaState {
   url?: string
 }
 
-export interface IGraphAreaProps extends IProps{ }
+export interface IGraphAreaProps extends IProps{ 
+  dark: boolean
+}
 export interface IGraphAreaState extends IState {
-  graph: IGraph
-  // options: any
-  // events: any
+  dark: boolean
+  // graph: IGraph
+  nodes: Node[]
+  edges: Edge[]
+  network?: Network
 }
