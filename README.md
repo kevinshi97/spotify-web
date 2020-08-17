@@ -1,3 +1,5 @@
+Use the Fruchterman Reingold method to draw the graph
+
 Check out my app [here](http://kevinshi97.github.io/spotify-web)<br />
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br />
 Deployment on Github pages was done following [this wonderful guide](https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f).<br />

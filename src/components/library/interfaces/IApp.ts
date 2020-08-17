@@ -1,15 +1,16 @@
 import { TimeRange } from '../enums/enums';
 import { Track, AudioFeatures } from './ISpotifyObjects';
-import { IGraph } from './IGraph';
 import { Network, Node, Edge } from 'vis';
 
 export interface IProps { 
   tracks?: Track[]
+  tracks_audio_features?: AudioFeatures[]
   curr_track?: Track
   curr_audio_features?: AudioFeatures
 }
 export interface IState {
   tracks?: Track[]
+  tracks_audio_features?: AudioFeatures[]
   curr_track?: Track
   curr_audio_features?: AudioFeatures
 }
@@ -34,6 +35,16 @@ export interface IAppState extends IState {
  * curr_adio_features: the audio features for the curr_track
  */
 
+export interface IGraphAreaProps extends IProps{ 
+  dark: boolean
+}
+export interface IGraphAreaState extends IState {
+  dark: boolean
+  // graph: IGraph
+  nodes: Node[]
+  edges: Edge[]
+  network?: Network
+}
 
 export interface IChartAreaProps {
   dark: boolean,
@@ -48,15 +59,4 @@ export interface IChartAreaState {
   image?: string
   name?: string
   url?: string
-}
-
-export interface IGraphAreaProps extends IProps{ 
-  dark: boolean
-}
-export interface IGraphAreaState extends IState {
-  dark: boolean
-  // graph: IGraph
-  nodes: Node[]
-  edges: Edge[]
-  network?: Network
 }

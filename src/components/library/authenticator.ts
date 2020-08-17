@@ -4,7 +4,7 @@ class Authenticator {
    */
   private static _instance: Authenticator;
   private client_id: string = '287daee6bafd4ce48e000a00a40d3f6f';
-  private redirect_uri: string = 'http://935b2ca9619d.ngrok.io';
+  private redirect_uri: string = 'http://45aa0902ff19.ngrok.io';
   // private redirect_uri: string = 'http://kevinshi97.github.io/spotify-web';
   private scopes: string = 'user-top-read user-follow-read user-library-read';
   private state: string = this.generateRandomString(16);

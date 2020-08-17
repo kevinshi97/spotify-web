@@ -1,4 +1,4 @@
-import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer, Text} from 'recharts';
+import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Text} from 'recharts';
 import React, {Component} from 'react';
 import { IChartAreaProps, IChartAreaState } from '../library/interfaces/IApp';
 import {chart_color, dark_chart_color } from '../library/colors/colors';
@@ -34,9 +34,9 @@ export class ChartArea extends Component<IChartAreaProps, IChartAreaState> {
             </RadarChart>
           </ResponsiveContainer>
         </div>
-        <div className='player-container'>
+        {/* <div className='player-container'>
           <iframe id={'player'} src={this.state.track?.preview_url} allowTransparency={true} allow='encryted-media' />
-        </div>
+        </div> */}
       </div>
     )
   }

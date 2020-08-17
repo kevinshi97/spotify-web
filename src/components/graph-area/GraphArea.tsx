@@ -12,7 +12,25 @@ import './GraphArea.css';
 // import "./styles.css";
 // need to import the vis network css in order to show tooltip
 // import "./network.css";
- 
+
+
+function sortWithIndeces(list_audio_features: AudioFeatures[]) {
+  let to_sort: any[] = [];
+  for (let i = 0; i < list_audio_features.length; i++) {
+    to_sort.push([list_audio_features[i], i+1]);
+  }
+  to_sort.sort(function(left: [AudioFeatures, number], right: [AudioFeatures, number]) {
+    return left[0].acousticness < right[0].acousticness ? -1 : 1;
+  });
+  console.log(to_sort);
+  let indices = [];
+  let test = [];
+  for (let i = 0; i < to_sort.length; i++) {
+      test.push(to_sort[i][0]);
+      indices.push(to_sort[i][1]);
+  }
+  return [test, indices];
+}
 
 
 export class GraphArea extends Component<IGraphAreaProps, IGraphAreaState> {
@@ -32,12 +50,17 @@ export class GraphArea extends Component<IGraphAreaProps, IGraphAreaState> {
         } as Node);
         if (i > 1) {
           edges.push({
-            to: i - 1,
-            from: i,
+            to: i,
+            from: i-1,
             color: dark_edge_color
           } as Edge);
         }
       }
+    }
+    if (props.tracks_audio_features) {
+      let res = sortWithIndeces(props.tracks_audio_features);
+      console.log('something');
+      console.log(res);
     }
     super(props);
     this.state = {
@@ -47,7 +70,8 @@ export class GraphArea extends Component<IGraphAreaProps, IGraphAreaState> {
       edges: edges,
       curr_track: this.props.curr_track,
       curr_audio_features: this.props.curr_audio_features,
-      tracks: this.props.tracks
+      tracks: this.props.tracks,
+      tracks_audio_features: this.props.tracks_audio_features
     }
   }
  
@@ -95,17 +119,11 @@ export class GraphArea extends Component<IGraphAreaProps, IGraphAreaState> {
   }
 
   componentDidUpdate(prevProps: IGraphAreaProps, prevState: IGraphAreaState) {
-    console.log('graph updated');
     if (this.state.tracks && this.state.curr_track !== prevState.curr_track) {
       const adapter: SpotifyAdapter = new SpotifyAdapter(this);
-      adapter.getAudioFeature(this.state.curr_track!);
+      // adapter.getAudioFeature(this.state.curr_track!);
     }
     if (this.state.network) {
-      console.log('im in the network');
-      // console.log(this.state.dark);
-      // console.log('state:', this.state);
-      // console.log('preprops:', prevProps);
-      // console.log('this.props', this.props);
       if (this.state.dark !== this.props.dark) {
         let nodes = this.state.nodes;
         let edges = this.state.edges;
@@ -118,13 +136,14 @@ export class GraphArea extends Component<IGraphAreaProps, IGraphAreaState> {
         }
         this.setState({ dark: this.props.dark, nodes: nodes, edges: edges }, () => {
           console.log(this.state);
-          // this.state.network?.emitter.emit('_dataChanged');
           this.state.network?.setData({ nodes: this.state.nodes, edges: this.state.edges });
           this.state.network?.redraw();
         });
       }
     }
   }
+
+
 
 }
  

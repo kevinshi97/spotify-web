@@ -28,9 +28,7 @@ class App extends Component<IAppProps, IAppState> {
 
   changeTheme = () => {
     this.setState({ dark: !this.state.dark });
-    // console.log(this.state);
   }
-
 
   render() {
     let appGraphArea;
@@ -39,7 +37,8 @@ class App extends Component<IAppProps, IAppState> {
         dark={this.state.dark}
         curr_track={this.state.curr_track}
         curr_audio_features={this.state.curr_audio_features}
-        tracks={this.state.tracks}/>
+        tracks={this.state.tracks}
+        tracks_audio_features={this.state.tracks_audio_features }/>
     } else {
       appGraphArea = <div />
     }
@@ -94,7 +93,8 @@ class App extends Component<IAppProps, IAppState> {
   componentDidUpdate(prevProps: IAppProps, prevState: IAppState) {
     const adapter: SpotifyAdapter = new SpotifyAdapter(this);
     if (this.state.tracks && this.state.curr_track !== prevState.curr_track) {
-      adapter.getAudioFeature(this.state.curr_track!);
+      // adapter.getAudioFeature(this.state.curr_track!);
+      adapter.getTopAudioFeatures();
     }
   }
 }

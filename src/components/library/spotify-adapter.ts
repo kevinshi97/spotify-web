@@ -51,21 +51,47 @@ export class SpotifyAdapter {
     }
   }
 
-  public getAudioFeature(curr_track: Track): void {
-    const id: string = curr_track.uri.split(':').pop() || '';
-    console.log(id);
-    const url = 'https://api.spotify.com/v1/audio-features/'+encodeURI(id);
-    const params: RequestInit = {
-      headers: {'Authorization': 'Bearer ' + this.access_token} as HeadersInit, 
-      method: 'GET',
+  public getTopAudioFeatures(): void {
+    let id: string
+    let url: string
+    let params: RequestInit
+    if (this.app.state.tracks) {
+      for (let i = 0; i < this.app.state.tracks.length; i++) {
+        id = this.app.state.tracks[i].uri.split(':').pop() || '';
+        url = 'https://api.spotify.com/v1/audio-features/'+encodeURI(id);
+        params = {
+          headers: {'Authorization': 'Bearer ' + this.access_token} as HeadersInit, 
+          method: 'GET',
+        }     
+        fetch(url, params)
+          .then(res => res.json())
+          .then((data) => {
+            const audio_features = data as AudioFeatures
+            // console.log(audio_features);
+            let tracks_audio_features: AudioFeatures[] = this.app.state.tracks_audio_features || [];
+            tracks_audio_features.push(audio_features); 
+            this.app.setState({ curr_audio_features: audio_features, tracks_audio_features: tracks_audio_features});
+            // console.log(this.app.state.curr_audio_features);
+        })
+      }
     }
-    fetch(url, params)
-      .then(res => res.json())
-      .then((data) => {
-        const audio_features = data as AudioFeatures
-        console.log(audio_features);
-        this.app.setState({ curr_audio_features: audio_features });
-        // console.log(this.app.state.curr_audio_features);
-    })
   }
+
+  // public getAudioFeature(curr_track: Track): void {
+  //   const id: string = curr_track.uri.split(':').pop() || '';
+  //   console.log(id);
+  //   const url = 'https://api.spotify.com/v1/audio-features/'+encodeURI(id);
+  //   const params: RequestInit = {
+  //     headers: {'Authorization': 'Bearer ' + this.access_token} as HeadersInit, 
+  //     method: 'GET',
+  //   }
+  //   fetch(url, params)
+  //     .then(res => res.json())
+  //     .then((data) => {
+  //       const audio_features = data as AudioFeatures
+  //       console.log(audio_features);
+  //       this.app.setState({ curr_audio_features: audio_features });
+  //       // console.log(this.app.state.curr_audio_features);
+  //   })
+  // }
 }
